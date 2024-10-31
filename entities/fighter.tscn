@@ -1,0 +1,59 @@
+[gd_scene load_steps=8 format=3 uid="uid://clhwq8awa5cni"]
+
+[ext_resource type="Texture2D" uid="uid://cosla1adtfgxr" path="res://assets/fighter.png" id="1_546ki"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kqdcf"]
+atlas = ExtResource("1_546ki")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4n6s2"]
+atlas = ExtResource("1_546ki")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_niuhd"]
+atlas = ExtResource("1_546ki")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6dbu"]
+atlas = ExtResource("1_546ki")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qacp0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kqdcf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4n6s2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_niuhd")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6dbu")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wlsws"]
+size = Vector2(12, 9)
+
+[node name="fighter" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qacp0")
+animation = &"attack"
+frame = 2
+frame_progress = 0.980976
+
+[node name="CollisionBody" type="CollisionShape2D" parent="."]
+position = Vector2(0, 9.5)
+shape = SubResource("RectangleShape2D_wlsws")

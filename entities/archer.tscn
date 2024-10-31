@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://cqnom1i703210"]
+
+[ext_resource type="Texture2D" uid="uid://bxhc6665uu1d2" path="res://assets/archer.png" id="1_3rgrh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqvlo"]
+atlas = ExtResource("1_3rgrh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osoga"]
+atlas = ExtResource("1_3rgrh")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cbvr"]
+atlas = ExtResource("1_3rgrh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mylhp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqvlo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osoga")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cbvr")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yoq1s"]
+size = Vector2(10, 8)
+
+[node name="archer" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mylhp")
+animation = &"attack"
+frame_progress = 0.871276
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_yoq1s")

@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://buulksmy1ddir"]
+
+[ext_resource type="Texture2D" uid="uid://dfsnf7clvlnxs" path="res://assets/goblin.png" id="1_0dtg2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sdvvu"]
+atlas = ExtResource("1_0dtg2")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56n18"]
+atlas = ExtResource("1_0dtg2")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fr00p"]
+atlas = ExtResource("1_0dtg2")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3u1ck"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sdvvu")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56n18")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fr00p")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w1j5m"]
+size = Vector2(10, 8)
+
+[node name="goblin" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_3u1ck")
+animation = &"walk"
+frame_progress = 0.389883
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_w1j5m")

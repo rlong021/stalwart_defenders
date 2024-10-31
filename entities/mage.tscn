@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://th1td2l06gjr"]
+
+[ext_resource type="Texture2D" uid="uid://xh1557vxclh0" path="res://assets/mage.png" id="1_xc8kq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ck7ib"]
+atlas = ExtResource("1_xc8kq")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qguig"]
+atlas = ExtResource("1_xc8kq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qnruq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ck7ib")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qguig")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l11iy"]
+size = Vector2(10, 8)
+
+[node name="mage" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qnruq")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_l11iy")
