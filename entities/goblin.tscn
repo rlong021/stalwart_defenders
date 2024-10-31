@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://buulksmy1ddir"]
+[gd_scene load_steps=8 format=3 uid="uid://buulksmy1ddir"]
 
 [ext_resource type="Texture2D" uid="uid://dfsnf7clvlnxs" path="res://assets/goblin.png" id="1_0dtg2"]
 
@@ -39,7 +39,11 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w1j5m"]
 size = Vector2(10, 8)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyymt"]
+size = Vector2(10, 8)
+
 [node name="goblin" type="CharacterBody2D"]
+position = Vector2(0, -10)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_3u1ck")
@@ -49,3 +53,11 @@ frame_progress = 0.389883
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_w1j5m")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="Collisionenemy" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 10)
+shape = SubResource("RectangleShape2D_jyymt")

@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://th1td2l06gjr"]
+[gd_scene load_steps=8 format=3 uid="uid://th1td2l06gjr"]
 
 [ext_resource type="Texture2D" uid="uid://xh1557vxclh0" path="res://assets/mage.png" id="1_xc8kq"]
+[ext_resource type="Script" path="res://entities/mage.gd" id="1_y3ey0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ck7ib"]
 atlas = ExtResource("1_xc8kq")
@@ -32,7 +33,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l11iy"]
 size = Vector2(10, 8)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_q7fcd"]
+radius = 91.0055
+
 [node name="mage" type="CharacterBody2D"]
+position = Vector2(0, -10)
+script = ExtResource("1_y3ey0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qnruq")
@@ -41,3 +47,15 @@ animation = &"idle"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_l11iy")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionFIndEnemy" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 10)
+shape = SubResource("CircleShape2D_q7fcd")
+
+[node name="TimerDetectEnemy" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true

@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://clhwq8awa5cni"]
+[gd_scene load_steps=10 format=3 uid="uid://clhwq8awa5cni"]
 
 [ext_resource type="Texture2D" uid="uid://cosla1adtfgxr" path="res://assets/fighter.png" id="1_546ki"]
+[ext_resource type="Script" path="res://entities/fighter.gd" id="1_um4s1"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kqdcf"]
 atlas = ExtResource("1_546ki")
@@ -46,7 +47,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wlsws"]
 size = Vector2(12, 9)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_10rlg"]
+radius = 91.0055
+
 [node name="fighter" type="CharacterBody2D"]
+position = Vector2(0, -10)
+platform_wall_layers = 255
+script = ExtResource("1_um4s1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qacp0")
@@ -57,3 +64,18 @@ frame_progress = 0.980976
 [node name="CollisionBody" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9.5)
 shape = SubResource("RectangleShape2D_wlsws")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionFIndEnemy" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 10)
+shape = SubResource("CircleShape2D_10rlg")
+
+[node name="TimerDetectEnemy" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="timeout" from="TimerDetectEnemy" to="." method="_on_timer_detect_enemy_timeout"]
