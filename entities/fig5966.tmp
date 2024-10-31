@@ -31,7 +31,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_niuhd")
 }],
-"loop": false,
+"loop": true,
 "name": &"attack",
 "speed": 10.0
 }, {
@@ -58,7 +58,7 @@ script = ExtResource("1_um4s1")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qacp0")
 animation = &"attack"
-autoplay = "idle"
+frame_progress = 0.0365878
 
 [node name="CollisionBody" type="CollisionShape2D" parent="."]
 position = Vector2(0, 9.5)
@@ -79,13 +79,12 @@ autostart = true
 [node name="Area2D2ForAttack" type="Area2D" parent="."]
 position = Vector2(0, 10)
 collision_layer = 2
-collision_mask = 2
+collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D2ForAttack"]
 position = Vector2(0, -10)
 polygon = PackedVector2Array(-10, 3, -10, 1, -6, -10, 6, -14, 8, -14, 8, 3)
 disabled = true
 
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="timeout" from="TimerDetectEnemy" to="." method="_on_timer_detect_enemy_timeout"]

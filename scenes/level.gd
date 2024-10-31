@@ -1,6 +1,8 @@
 extends Control
 
+@export var gob_scene: PackedScene
 var TAH:int
+var gob_speed = 50
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	TAH = 0
@@ -30,3 +32,15 @@ func toggle_active_hero():
 		$archer.change_state("passive")
 		$mage.change_state("active")
 	
+
+
+func _on_timer_goblin_spawn_timeout() -> void:
+	var gob = gob_scene.instantiate()
+	var gob_spawn_location = $GoblinSpawnPath2D/GoblinSpawnPathFollow2D
+	gob_spawn_location.progress_ratio = randf()
+	var direction = gob_spawn_location.rotation + PI
+	gob.position = gob_spawn_location.position
+	#gob.rotation = direction
+	var velocity = Vector2(0, gob_speed)
+	gob.linear_velocity = velocity
+	add_child(gob)
