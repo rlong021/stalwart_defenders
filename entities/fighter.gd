@@ -1,11 +1,13 @@
 extends CharacterBody2D
 
+@export var Damage = 25
 var SPEED = 10
 enum FIGHTER_STATE { PASSIVE, ACTIVE}
 var active_state
 var travel_to
 
 func _ready() -> void:
+	$Area2D2ForAttack.Damage = Damage
 	$AnimatedSprite2D.play("idle")
 	$Area2D2ForAttack/CollisionPolygon2D.disabled = true
 	travel_to = null
@@ -22,7 +24,6 @@ func _process(delta: float) -> void:
 			velocity = velocity * SPEED
 		position += velocity * SPEED * delta
 
-	
 	elif active_state == FIGHTER_STATE.PASSIVE:
 		if travel_to != null:
 			velocity = (travel_to - position).normalized()
@@ -55,7 +56,6 @@ func attack(attacking):
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	travel_to = area.global_position
-	print(area.global_position)
 	pass
 
 

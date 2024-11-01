@@ -63,8 +63,8 @@ position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_w1j5m")
 
 [node name="Area2DForHeroFinding" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 8
+collision_layer = 8
+collision_mask = 0
 
 [node name="Collisionenemy" type="CollisionShape2D" parent="Area2DForHeroFinding"]
 position = Vector2(0, 10)
@@ -72,6 +72,8 @@ shape = SubResource("RectangleShape2D_jyymt")
 
 [node name="Area2DforDamage" type="Area2D" parent="."]
 position = Vector2(1, 4)
+collision_layer = 0
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DforDamage"]
 position = Vector2(-1, 6)
@@ -87,5 +89,6 @@ offset_bottom = 5.0
 value = 100.0
 show_percentage = false
 
-[connection signal="area_entered" from="Area2DForHeroFinding" to="." method="_on_area_2d_for_damage_area_entered"]
 [connection signal="area_entered" from="Area2DForHeroFinding" to="." method="_on_area_2d_for_hero_finding_area_entered"]
+[connection signal="area_entered" from="Area2DForHeroFinding" to="." method="_on_area_2d_for_damage_area_entered"]
+[connection signal="area_entered" from="Area2DforDamage" to="." method="_on_area_2_dfor_damage_area_entered"]
