@@ -16,7 +16,6 @@ func _process(delta: float) -> void:
 	velocity = velocity.normalized()
 	if velocity.length() > 0:
 		move_and_collide(velocity)
-		velocity = velocity * SPEED
 		position += velocity * SPEED * delta
 	
 	move_and_slide()

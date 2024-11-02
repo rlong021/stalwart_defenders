@@ -53,7 +53,7 @@ func _process(delta: float) -> void:
 			travel_to_passive = Vector2(0,0)
 		if check_if_gob_still_near == 0 && position.distance_to($"../FighterFlag".position)>2:
 			travel_to_active = $"../FighterFlag".position
-		elif check_if_gob_still_near > 0 && position.distance_to(travel_to_passive) <10:
+		elif check_if_gob_still_near > 0 && position.distance_to(travel_to_passive) <20:
 			attack(true)
 
 	move_and_slide()
@@ -83,6 +83,9 @@ func moveto(placetomove):
 	travel_to_active = placetomove
 	#$Area2D.global_position = placetomove
 	$"../FighterFlag".position = placetomove
+
+
+
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	attack(false)

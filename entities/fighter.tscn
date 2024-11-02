@@ -4,33 +4,33 @@
 [ext_resource type="Script" path="res://entities/fighter.gd" id="1_um4s1"]
 [ext_resource type="Script" path="res://entities/area_2d_2_for_attack.gd" id="3_0c1hw"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kqdcf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_wwatc"]
 atlas = ExtResource("1_546ki")
-region = Rect2(32, 0, 32, 32)
+region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4n6s2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_dh4q5"]
 atlas = ExtResource("1_546ki")
-region = Rect2(0, 32, 32, 32)
+region = Rect2(0, 64, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_niuhd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_boegq"]
 atlas = ExtResource("1_546ki")
-region = Rect2(32, 32, 32, 32)
+region = Rect2(64, 64, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_x6dbu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_a75ea"]
 atlas = ExtResource("1_546ki")
-region = Rect2(0, 0, 32, 32)
+region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qacp0"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kqdcf")
+"texture": SubResource("AtlasTexture_wwatc")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4n6s2")
+"texture": SubResource("AtlasTexture_dh4q5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_niuhd")
+"texture": SubResource("AtlasTexture_boegq")
 }],
 "loop": false,
 "name": &"attack",
@@ -38,7 +38,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_x6dbu")
+"texture": SubResource("AtlasTexture_a75ea")
 }],
 "loop": true,
 "name": &"idle",
@@ -52,7 +52,6 @@ size = Vector2(12, 9)
 radius = 91.0055
 
 [node name="fighter" type="CharacterBody2D"]
-position = Vector2(0, -10)
 motion_mode = 1
 platform_on_leave = 2
 platform_wall_layers = 255
@@ -62,9 +61,11 @@ script = ExtResource("1_um4s1")
 sprite_frames = SubResource("SpriteFrames_qacp0")
 animation = &"attack"
 autoplay = "idle"
+frame = 2
+frame_progress = 1.0
 
 [node name="CollisionBody" type="CollisionShape2D" parent="."]
-position = Vector2(0, 9.5)
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_wlsws")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -78,7 +79,6 @@ position = Vector2(0, 10)
 shape = SubResource("CircleShape2D_10rlg")
 
 [node name="Area2D2ForAttack" type="Area2D" parent="."]
-position = Vector2(0, 10)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("3_0c1hw")

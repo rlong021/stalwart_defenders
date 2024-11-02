@@ -2,10 +2,11 @@ extends Control
 
 @export var gob_scene: PackedScene
 var TAH:int
-var gob_speed = 1
+var gob_speed = .5
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$FighterFlag.position = $fighter.position
+	$ArcherFlag.position = $archer.position
 	TAH = 0
 	toggle_active_hero()
 

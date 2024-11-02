@@ -19,5 +19,5 @@ func _on_timer_detect_enemy_timeout() -> void:
 	else:
 		$CollisionFIndEnemy.disabled = true
 
-func _on_fighter_gob_near(sentVal) -> void:
+func _on_archer_gob_near(sentVal) -> void:
 	check_if_gob_still_near = sentVal

@@ -37,7 +37,6 @@ size = Vector2(10, 8)
 radius = 91.0055
 
 [node name="mage" type="CharacterBody2D"]
-position = Vector2(0, -10)
 motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_y3ey0")
@@ -47,7 +46,6 @@ sprite_frames = SubResource("SpriteFrames_qnruq")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 10)
 shape = SubResource("RectangleShape2D_l11iy")
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -55,7 +53,6 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionFIndEnemy" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, 10)
 shape = SubResource("CircleShape2D_q7fcd")
 
 [node name="TimerDetectEnemy" type="Timer" parent="."]

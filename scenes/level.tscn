@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://by0l4lghdwm20"]
+[gd_scene load_steps=13 format=4 uid="uid://by0l4lghdwm20"]
 
 [ext_resource type="Texture2D" uid="uid://crga6fny75tbm" path="res://assets/structures.png" id="1_gu6bi"]
 [ext_resource type="Script" path="res://scenes/level.gd" id="1_nlxye"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://th1td2l06gjr" path="res://entities/mage.tscn" id="4_yl6sp"]
 [ext_resource type="PackedScene" uid="uid://buulksmy1ddir" path="res://entities/goblin.tscn" id="5_go2fw"]
 [ext_resource type="PackedScene" uid="uid://shwxfxnoid35" path="res://hud/hud.tscn" id="6_tcg84"]
+[ext_resource type="PackedScene" uid="uid://dqf7ei6fqu1cb" path="res://entities/archer_flag.tscn" id="6_vcq6s"]
 [ext_resource type="PackedScene" uid="uid://b3h612oj41n6v" path="res://entities/fighter_flag.tscn" id="8_6yqdw"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_exbkl"]
@@ -78,6 +79,8 @@ tile_set = SubResource("TileSet_a35sx")
 [node name="fighter" parent="." instance=ExtResource("2_o27an")]
 position = Vector2(323, 156)
 
+[node name="ArcherFlag" parent="." instance=ExtResource("6_vcq6s")]
+
 [node name="archer" parent="." instance=ExtResource("3_aw35f")]
 position = Vector2(480, 87)
 
@@ -111,4 +114,7 @@ autostart = true
 [connection signal="area_entered" from="FighterFlag" to="fighter" method="_on_fighter_flag_area_entered"]
 [connection signal="closest_gob" from="FighterFlag" to="fighter" method="_on_fighter_flag_closest_gob"]
 [connection signal="gob_near" from="fighter" to="FighterFlag" method="_on_fighter_gob_near"]
+[connection signal="area_entered" from="ArcherFlag" to="archer" method="_on_archer_flag_area_entered"]
+[connection signal="closest_gob" from="ArcherFlag" to="archer" method="_on_archer_flag_closest_gob"]
+[connection signal="gob_near" from="archer" to="ArcherFlag" method="_on_archer_gob_near"]
 [connection signal="timeout" from="TimerGoblinSpawn" to="." method="_on_timer_goblin_spawn_timeout"]
