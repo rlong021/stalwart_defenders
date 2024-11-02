@@ -45,6 +45,8 @@ radius = 91.0055
 
 [node name="archer" type="CharacterBody2D"]
 position = Vector2(0, -10)
+motion_mode = 1
+platform_on_leave = 2
 script = ExtResource("1_sf26a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3h612oj41n6v"]
+
+[ext_resource type="Script" path="res://entities/fighter_flag.gd" id="1_wt1e7"]
+[ext_resource type="Texture2D" uid="uid://cttpa02syis8r" path="res://assets/flag_coverage.png" id="2_nmebm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xv2mw"]
+radius = 91.0055
+
+[node name="FighterFlag" type="Area2D"]
+collision_layer = 0
+collision_mask = 8
+script = ExtResource("1_wt1e7")
+
+[node name="CollisionFIndEnemy" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xv2mw")
+
+[node name="TextureRect" type="TextureRect" parent="CollisionFIndEnemy"]
+self_modulate = Color(1, 0, 0, 0.133333)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.0
+offset_top = -91.0
+offset_right = 91.0
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_nmebm")
+expand_mode = 1
+
+[node name="TimerDetectEnemy" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="timeout" from="TimerDetectEnemy" to="." method="_on_timer_detect_enemy_timeout"]

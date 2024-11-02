@@ -2,9 +2,10 @@ extends Control
 
 @export var gob_scene: PackedScene
 var TAH:int
-var gob_speed = 50
+var gob_speed = 1
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	$FighterFlag.position = $fighter.position
 	TAH = 0
 	toggle_active_hero()
 
@@ -41,6 +42,7 @@ func _on_timer_goblin_spawn_timeout() -> void:
 	var direction = gob_spawn_location.rotation + PI
 	gob.position = gob_spawn_location.position
 	#gob.rotation = direction
-	var velocity = Vector2(0, gob_speed)
-	gob.linear_velocity = velocity
+	var velocity = Vector2(0, 1)
+	gob.SPEED = gob_speed
+	gob.velocity = velocity
 	add_child(gob)

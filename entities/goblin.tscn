@@ -46,11 +46,10 @@ size = Vector2(10, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sf7jj"]
 size = Vector2(10, 8)
 
-[node name="goblin" type="RigidBody2D"]
+[node name="goblin" type="CharacterBody2D"]
 position = Vector2(0, -10)
 collision_layer = 3
 collision_mask = 3
-gravity_scale = 0.0
 script = ExtResource("1_lk8b5")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -89,6 +88,4 @@ offset_bottom = 5.0
 value = 100.0
 show_percentage = false
 
-[connection signal="area_entered" from="Area2DForHeroFinding" to="." method="_on_area_2d_for_hero_finding_area_entered"]
-[connection signal="area_entered" from="Area2DForHeroFinding" to="." method="_on_area_2d_for_damage_area_entered"]
 [connection signal="area_entered" from="Area2DforDamage" to="." method="_on_area_2_dfor_damage_area_entered"]

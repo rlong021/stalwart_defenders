@@ -1,5 +1,6 @@
 extends Area2D
 
+@export var fighter_flag: PackedScene
 @export var Damage:int
 
 # Called when the node enters the scene tree for the first time.

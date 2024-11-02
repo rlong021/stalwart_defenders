@@ -38,6 +38,8 @@ radius = 91.0055
 
 [node name="mage" type="CharacterBody2D"]
 position = Vector2(0, -10)
+motion_mode = 1
+platform_on_leave = 2
 script = ExtResource("1_y3ey0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
