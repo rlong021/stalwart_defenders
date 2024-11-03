@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://th1td2l06gjr"]
+[gd_scene load_steps=9 format=3 uid="uid://th1td2l06gjr"]
 
 [ext_resource type="Texture2D" uid="uid://xh1557vxclh0" path="res://assets/mage.png" id="1_xc8kq"]
 [ext_resource type="Script" path="res://entities/mage.gd" id="1_y3ey0"]
+[ext_resource type="PackedScene" uid="uid://duq3gwmhpruja" path="res://entities/mage_spell.tscn" id="2_qib1w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ck7ib"]
 atlas = ExtResource("1_xc8kq")
@@ -40,6 +41,7 @@ radius = 91.0055
 motion_mode = 1
 platform_on_leave = 2
 script = ExtResource("1_y3ey0")
+mageSpell = ExtResource("2_qib1w")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qnruq")
@@ -58,3 +60,10 @@ shape = SubResource("CircleShape2D_q7fcd")
 [node name="TimerDetectEnemy" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
+
+[node name="Marker2D" type="Marker2D" parent="."]
+
+[node name="ShootTimer" type="Timer" parent="."]
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]

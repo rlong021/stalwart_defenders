@@ -12,6 +12,7 @@ var closest_gob
 @export var check_if_gob_still_near:int
 
 func _ready() -> void:
+	travel_to_active = null
 	travel_to_passive = Vector2(0,0)
 	check_if_gob_still_near = 0
 	$Area2D2ForAttack.Damage = Damage
@@ -24,8 +25,8 @@ func _process(delta: float) -> void:
 	var velocity = Vector2.ZERO
 
 	if active_state == FIGHTER_STATE.ACTIVE  || travel_to_active != null:
-		if travel_to_passive != Vector2(0,0):
-			travel_to_passive = Vector2(0,0)
+		#if travel_to_passive != Vector2(0,0):
+			#travel_to_passive = Vector2(0,0)
 		if travel_to_active != null:
 			velocity = (travel_to_active - position).normalized()
 			if velocity.length() > 0:
@@ -37,8 +38,9 @@ func _process(delta: float) -> void:
 	if travel_to_active != null && position.distance_to(travel_to_active) < 2:
 		travel_to_active = null
  
-	elif active_state == FIGHTER_STATE.PASSIVE:
+	elif active_state == FIGHTER_STATE.PASSIVE || travel_to_active == null:
 		if travel_to_passive != Vector2(0,0) && travel_to_active == null:
+			
 			velocity = (travel_to_passive - position).normalized()
 			if velocity.length() > 0:
 				move_and_collide(velocity)
@@ -83,9 +85,6 @@ func moveto(placetomove):
 	travel_to_active = placetomove
 	#$Area2D.global_position = placetomove
 	$"../FighterFlag".position = placetomove
-
-
-
 
 func _on_animated_sprite_2d_animation_finished() -> void:
 	attack(false)

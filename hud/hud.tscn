@@ -1,8 +1,113 @@
-[gd_scene format=3 uid="uid://shwxfxnoid35"]
+[gd_scene load_steps=12 format=3 uid="uid://shwxfxnoid35"]
+
+[ext_resource type="Script" path="res://hud/hud.gd" id="1_iul52"]
+[ext_resource type="Texture2D" uid="uid://bxhc6665uu1d2" path="res://assets/archer.png" id="2_gd2d1"]
+[ext_resource type="Texture2D" uid="uid://cosla1adtfgxr" path="res://assets/fighter.png" id="3_hd5ed"]
+[ext_resource type="Texture2D" uid="uid://xh1557vxclh0" path="res://assets/mage.png" id="4_31tq5"]
+[ext_resource type="Texture2D" uid="uid://dfsnf7clvlnxs" path="res://assets/goblin.png" id="5_p5mph"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42onr"]
+atlas = ExtResource("2_gd2d1")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l44hd"]
+atlas = ExtResource("3_hd5ed")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gr0ib"]
+atlas = ExtResource("4_31tq5")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lcxcu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42onr")
+}],
+"loop": true,
+"name": &"archer",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l44hd")
+}],
+"loop": true,
+"name": &"fighter",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gr0ib")
+}],
+"loop": true,
+"name": &"mage",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i2v4s"]
+atlas = ExtResource("5_p5mph")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pfut3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i2v4s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_iul52")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = 608.0
 offset_right = 768.0
 offset_bottom = 432.0
+
+[node name="ActiveHero" type="Label" parent="."]
+offset_left = 609.0
+offset_top = 8.0
+offset_right = 768.0
+offset_bottom = 31.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Active Hero"
+horizontal_alignment = 1
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(685, 74)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_lcxcu")
+animation = &"fighter"
+
+[node name="gobleftwords" type="Label" parent="."]
+offset_left = 608.0
+offset_top = 269.0
+offset_right = 767.0
+offset_bottom = 324.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "Goblins left:"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="gobleftnumber" type="Label" parent="."]
+offset_left = 619.0
+offset_top = 346.0
+offset_right = 688.0
+offset_bottom = 381.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 25
+text = "999 x"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(725, 363)
+scale = Vector2(4, 4)
+sprite_frames = SubResource("SpriteFrames_pfut3")

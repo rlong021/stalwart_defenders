@@ -3,7 +3,7 @@ extends Area2D
 signal closest_gob
 
 var check_if_gob_still_near
-# Called when the node enters the scene tree for the first time.
+
 func _ready() -> void:
 	check_if_gob_still_near = 0
 

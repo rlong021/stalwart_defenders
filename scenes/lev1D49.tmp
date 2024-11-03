@@ -96,6 +96,9 @@ position = Vector2(185, 210)
 [node name="MageFlag" parent="." instance=ExtResource("9_idrgq")]
 position = Vector2(185, 210)
 
+[node name="goblin" parent="." instance=ExtResource("5_go2fw")]
+position = Vector2(-141, -75)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 16)
 anchor_mode = 0
@@ -117,40 +120,7 @@ position = Vector2(7, -14)
 [node name="TimerGoblinSpawn" type="Timer" parent="."]
 autostart = true
 
-[node name="EndGameLostLabel" type="Label" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 2.0
-offset_top = 3.0
-offset_right = 606.0
-offset_bottom = 393.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 60
-text = "All is lost!
-You lose!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="EndGameWinLabel" type="Label" parent="."]
-visible = false
-layout_mode = 0
-offset_left = 2.0
-offset_top = 21.0
-offset_right = 589.0
-offset_bottom = 371.0
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 60
-text = "You were victorious!
-You win!"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="goblin" parent="." instance=ExtResource("5_go2fw")]
-visible = false
-position = Vector2(-551, -433)
-
 [connection signal="Current_Hero" from="." to="Hud" method="_on_level_current_hero"]
-[connection signal="goblinsLeft" from="." to="Hud" method="_on_level_goblins_left"]
 [connection signal="area_entered" from="FighterFlag" to="fighter" method="_on_fighter_flag_area_entered"]
 [connection signal="closest_gob" from="FighterFlag" to="fighter" method="_on_fighter_flag_closest_gob"]
 [connection signal="gob_near" from="fighter" to="FighterFlag" method="_on_fighter_gob_near"]
@@ -160,4 +130,5 @@ position = Vector2(-551, -433)
 [connection signal="gob_near" from="mage" to="MageFlag" method="_on_mage_gob_near"]
 [connection signal="area_entered" from="MageFlag" to="mage" method="_on_mage_flag_area_entered"]
 [connection signal="closest_gob" from="MageFlag" to="mage" method="_on_mage_flag_closest_gob"]
+[connection signal="Damaging_structure" from="goblin" to="TileMapLayer2" method="_on_goblin_damaging_structure"]
 [connection signal="timeout" from="TimerGoblinSpawn" to="." method="_on_timer_goblin_spawn_timeout"]
