@@ -6,11 +6,12 @@ signal goblinsLeft
 @export var gob_scene: PackedScene
 var TAH:int
 var gob_speed = .5
+var starting_gob_to_kill =100
 var goblins_to_kill
 var goblins_spawned
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	goblins_to_kill = 100
+	goblins_to_kill = starting_gob_to_kill 
 	goblins_spawned = 0
 	$FighterFlag.position = $fighter.position
 	$ArcherFlag.position = $archer.position
@@ -54,7 +55,7 @@ func toggle_active_hero():
 
 func _on_timer_goblin_spawn_timeout() -> void:
 	goblins_spawned += 1
-	if goblins_spawned < goblins_to_kill:
+	if goblins_spawned <= starting_gob_to_kill:
 		var gob = gob_scene.instantiate()
 		var gob_spawn_location = $GoblinSpawnPath2D/GoblinSpawnPathFollow2D
 		gob_spawn_location.progress_ratio = randf()
@@ -65,7 +66,7 @@ func _on_timer_goblin_spawn_timeout() -> void:
 		gob.SPEED = gob_speed
 		gob.velocity = velocity
 		add_child(gob)
-	elif goblins_spawned >= goblins_to_kill:
+	elif goblins_spawned >= starting_gob_to_kill:
 		$TimerGoblinSpawn.stop()
 
 func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
