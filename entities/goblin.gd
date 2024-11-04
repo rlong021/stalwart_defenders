@@ -23,6 +23,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if gob_HP < gob_Max_HP && $ProgressBar.visible == false:
 		$ProgressBar.visible = true
+	
+	
 
 	if travel_to_passive != Vector2(0,0):
 		#print(travel_to_passive)
@@ -32,7 +34,6 @@ func _process(delta: float) -> void:
 			move_and_collide(velocity)
 			if global_position.distance_to(travel_to_passive) > 2:
 				velocity = velocity * SPEED
-		#print(velocity)
 		position += velocity * SPEED * delta
 		$AnimatedSprite2D.rotation = velocity.angle()+PI/2
 	#if check_if_gob_still_near == 0:
@@ -50,6 +51,7 @@ func kill_gob():
 
 func _on_area_2_dfor_damage_area_entered(area: Area2D) -> void:
 	if area.Damage != null:
+		print(area.name)
 		gob_HP += -area.Damage
 	if gob_HP <=0:
 		kill_gob()

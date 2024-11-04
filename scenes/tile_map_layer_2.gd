@@ -8,6 +8,7 @@ var changeme
 var modulated_cells:Dictionary
 
 func _ready() -> void:
+	visible = true
 	changeme = null
 	allcells = get_used_cells()
 	tilearray.resize(allcells.size())

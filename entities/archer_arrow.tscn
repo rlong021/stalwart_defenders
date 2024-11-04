@@ -3,15 +3,15 @@
 [ext_resource type="Texture2D" uid="uid://nc600pskn1nv" path="res://assets/projectiles.png" id="1_7yvpm"]
 [ext_resource type="Script" path="res://entities/archer_arrow.gd" id="1_cqpbt"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_osfsc"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_8u5on"]
 atlas = ExtResource("1_7yvpm")
-region = Rect2(16, 32, 16, 32)
+region = Rect2(0, 96, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_kt28f"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_osfsc")
+"texture": SubResource("AtlasTexture_8u5on")
 }],
 "loop": true,
 "name": &"default",
@@ -24,7 +24,7 @@ collision_mask = 0
 script = ExtResource("1_cqpbt")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, 4)
+position = Vector2(-7, 4)
 sprite_frames = SubResource("SpriteFrames_kt28f")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

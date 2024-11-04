@@ -5,22 +5,15 @@ signal goblinsLeft
 
 @export var gob_scene: PackedScene
 var TAH:int
-var gob_speed = .5
-var starting_gob_to_kill =100
+var gob_speed
+var starting_gob_to_kill
 var goblins_to_kill
 var goblins_spawned
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	goblins_to_kill = starting_gob_to_kill 
-	goblins_spawned = 0
-	$FighterFlag.position = $fighter.position
-	$ArcherFlag.position = $archer.position
-	$MageFlag.position = $mage.position
-	TAH = 0
-	toggle_active_hero()
-	Current_Hero.emit(TAH)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _ready() -> void:
+	get_tree().paused = true
+	
+
 func _process(delta: float) -> void:
 	if $TileMapLayer2.tilearray.max() == 0:
 		lost_game()
@@ -70,13 +63,77 @@ func _on_timer_goblin_spawn_timeout() -> void:
 		$TimerGoblinSpawn.stop()
 
 func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	print("I'm hereeee")
 	pass # Replace with function body.
 
 func lost_game():
 	$EndGameLostLabel.visible = true
 	get_tree().paused = true
+	$QuitMenu.visible = true
 	
 func win_game():
 	$EndGameWinLabel.visible = true
 	get_tree().paused = true
+	$QuitMenu.visible = true
+
+func start_game(GSpawn, GSpeed, SpawnRate):
+	get_tree()
+	starting_gob_to_kill = GSpawn
+	goblins_to_kill = starting_gob_to_kill
+	goblins_spawned = 0
+	gob_speed = GSpeed
+	$fighter.position = Vector2(300,215)
+	$archer.position = Vector2(490,215)
+	$mage.position = Vector2(105,215)
+	$FighterFlag.position = $fighter.position
+	$ArcherFlag.position = $archer.position
+	$MageFlag.position = $mage.position
+	$TimerGoblinSpawn.wait_time = SpawnRate
+	TAH = 0
+	toggle_active_hero()
+	Current_Hero.emit(TAH)
+	get_tree().paused = false
+
+
+func _on_easy_button_pressed() -> void:
+	start_game(75, 1,1.1)
+	$GridContainer/EasyButton.visible = false
+	$GridContainer/NormalButton.visible = false
+	$GridContainer/HardButton.visible = false
+	$GridContainer/BackButton.visible = false
+
+func _on_normal_button_pressed() -> void:
+	start_game(100, 2,1)
+	$GridContainer/EasyButton.visible = false
+	$GridContainer/NormalButton.visible = false
+	$GridContainer/HardButton.visible = false
+	$GridContainer/BackButton.visible = false
+
+func _on_hard_button_pressed() -> void:
+	start_game(125, 3,.9)
+	$GridContainer/EasyButton.visible = false
+	$GridContainer/NormalButton.visible = false
+	$GridContainer/HardButton.visible = false
+	$GridContainer/BackButton.visible = false
+
+func _on_q_button_pressed() -> void:
+	get_tree().quit()
+
+func _on_ng_button_pressed() -> void:
+	$GridContainer/NGButton.visible = false
+	$GridContainer/QButton.visible = false
+	$GridContainer/EasyButton.visible = true
+	$GridContainer/NormalButton.visible = true
+	$GridContainer/HardButton.visible = true
+	$GridContainer/BackButton.visible = true
+
+
+func _on_back_button_pressed() -> void:
+	$GridContainer/NGButton.visible = true
+	$GridContainer/QButton.visible = true
+	$GridContainer/EasyButton.visible = false
+	$GridContainer/NormalButton.visible = false
+	$GridContainer/HardButton.visible = false
+	$GridContainer/BackButton.visible = false
+	
+func _on_quit_menu_pressed() -> void:
+	get_tree().quit()

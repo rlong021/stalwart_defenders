@@ -4,7 +4,7 @@ extends CharacterBody2D
 
 signal gob_near
 
-@export var Damage = 25
+@export var Damage = 50
 var SPEED = 10
 enum MAGE_STATE { PASSIVE, ACTIVE}
 var active_state
@@ -21,7 +21,7 @@ func _ready() -> void:
 	travel_to_passive = Vector2(0,0)
 	check_if_gob_still_near = 0
 	$AnimatedSprite2D.play("idle")
-	$ShootTimer.wait_time = 0.5
+	$ShootTimer.wait_time = 1
 
 func _process(delta: float) -> void:
 	var velocity = Vector2.ZERO

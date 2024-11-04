@@ -1,20 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://duq3gwmhpruja"]
+[gd_scene load_steps=6 format=3 uid="uid://duq3gwmhpruja"]
 
 [ext_resource type="Texture2D" uid="uid://nc600pskn1nv" path="res://assets/projectiles.png" id="1_ol7ea"]
 [ext_resource type="Script" path="res://entities/mage_spell.gd" id="1_vk70e"]
+[ext_resource type="PackedScene" uid="uid://3j33ow3dmi16" path="res://entities/mage_spell_explosion.tscn" id="2_i3j7v"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p4pnw"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhk8l"]
 atlas = ExtResource("1_ol7ea")
-region = Rect2(16, 0, 16, 32)
+region = Rect2(64, 64, 32, 32)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_p3uka"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_ho20s"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_p4pnw")
+"texture": SubResource("AtlasTexture_rhk8l")
 }],
 "loop": true,
-"name": &"default",
+"name": &"shot",
 "speed": 5.0
 }]
 
@@ -22,16 +23,19 @@ animations = [{
 collision_layer = 2
 collision_mask = 16
 script = ExtResource("1_vk70e")
+mageSpellExplosion = ExtResource("2_i3j7v")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, 3)
-sprite_frames = SubResource("SpriteFrames_p3uka")
+[node name="AnimatedSprite2D2shot" type="AnimatedSprite2D" parent="."]
+position = Vector2(-7, 3)
+sprite_frames = SubResource("SpriteFrames_ho20s")
+animation = &"shot"
+autoplay = "shot"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PackedVector2Array(-1, -7, 1, -7, 1, -6, 2, -6, 2, -4, 1, -4, 1, -1, -1, -1, -1, -4, -2, -4, -2, -6, -1, -6)
 
 [node name="DieTimer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 0.5
 one_shot = true
 autostart = true
 
